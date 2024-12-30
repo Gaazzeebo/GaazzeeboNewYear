@@ -1,0 +1,353 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: #fff;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #1f1c2c, #928dab, #1f1c2c);
+    background-size: 400% 400%;
+    animation: swirlBackground 30s ease infinite;
+    position: relative;
+  }
+  
+  /* Animations */
+  @keyframes swirlBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @keyframes moveStars {
+    0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+    100% { transform: translate3d(-20%, -20%, 0) rotate(5deg); }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: rotateX(5deg) translateY(0); }
+    50% { transform: rotateX(5deg) translateY(-20px); }
+  }
+  
+  @keyframes glowTitle {
+    0% { text-shadow: 0 0 10px #ff6e6e, 0 0 20px #fff, 0 0 30px #ff6e6e; }
+    100% { text-shadow: 0 0 20px #ff6e6e, 0 0 40px #fff, 0 0 60px #ff6e6e; }
+  }
+  
+  @keyframes glowBranding {
+    0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+    100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.6); }
+  }
+  
+  @keyframes bounceYear {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  
+  @keyframes buttonShine {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+  }
+  
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  
+  /* Canvas & Background Elements */
+  #fireworksCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    background: transparent;
+  }
+  
+  #confetti-container {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .sparkles-layer {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-image: radial-gradient(#fff 1px, transparent 1px);
+    z-index: -2;
+    animation: moveStars 60s linear infinite;
+    transform-origin: center;
+  }
+  
+  .layer1 {
+    opacity: 0.3;
+    background-size: 50px 50px;
+  }
+  
+  .layer2 {
+    opacity: 0.2;
+    animation-duration: 90s;
+    background-size: 30px 30px;
+  }
+  
+  .layer3 {
+    opacity: 0.1;
+    animation-duration: 120s;
+    background-size: 20px 20px;
+  }
+  
+  /* Main Container & Content */
+  .main-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    perspective: 1000px;
+    text-align: center;
+  }
+  
+  .main-inner {
+    transform: rotateX(5deg);
+    transform-style: preserve-3d;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  /* Gaazzeebo Branding */
+  .gaazzeebo-branding {
+    font-size: 1.8rem;
+    letter-spacing: 8px;
+    color: #FFD700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    animation: glowBranding 2s ease-in-out infinite alternate;
+  }
+  
+  .gaazzeebo-title {
+    font-size: 4rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-shadow: 0 0 15px #f5f5f5, 0 0 25px #ff6e6e;
+    animation: glowTitle 3s ease-in-out infinite alternate;
+  }
+  
+  .year-span {
+    font-style: italic;
+    color: #FFD700;
+    display: inline-block;
+    animation: bounceYear 2s ease infinite;
+  }
+  
+  /* Typewriter */
+  .typewriter {
+    height: 3rem;
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    padding-right: 8px;
+  }
+  
+  .typewriter::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 10%;
+    height: 80%;
+    width: 3px;
+    background: #ffd700;
+    animation: blink 0.7s infinite;
+  }
+  
+  /* Countdown */
+  .countdown-container {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: perspective(1000px) rotateY(0deg);
+    transition: transform 0.3s ease;
+  }
+  
+  .countdown-item:hover {
+    transform: perspective(1000px) rotateY(10deg);
+  }
+  
+  .flip-card {
+    width: 100px;
+    height: 120px;
+    perspective: 1000px;
+    background: transparent;
+    margin-bottom: 0.5rem;
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffd700;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+  }
+  
+  .flip-card-back {
+    transform: rotateX(180deg);
+  }
+  
+  .flip-card.flipped .flip-card-inner {
+    transform: rotateX(180deg);
+  }
+  
+  .label {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0.9;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Celebrate Button */
+  .celebrate-button {
+    background: linear-gradient(135deg, #ffed00, #ff8a00, #ffed00);
+    background-size: 200% 200%;
+    color: #2c5364;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    animation: gradientShift 3s ease infinite;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .celebrate-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(45deg);
+    animation: buttonShine 3s linear infinite;
+  }
+  
+  .celebrate-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+  }
+  
+  .celebrate-button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Confetti */
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    background-color: var(--color);
+    opacity: 0.9;
+    border-radius: 2px;
+    z-index: 9999;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .gaazzeebo-branding {
+      font-size: 1.4rem;
+      letter-spacing: 6px;
+    }
+    
+    .gaazzeebo-title {
+      font-size: 2.5rem;
+    }
+  
+    .main-inner {
+      transform: none;
+      padding: 1rem;
+    }
+  
+    .flip-card {
+      width: 70px;
+      height: 90px;
+    }
+  
+    .flip-card-front,
+    .flip-card-back {
+      font-size: 2rem;
+    }
+  
+    .countdown-container {
+      gap: 1rem;
+    }
+  
+    .typewriter {
+      font-size: 1rem;
+      height: 2.5rem;
+    }
+  
+    .celebrate-button {
+      font-size: 1rem;
+      padding: 0.8rem 1.6rem;
+    }
+  }
